@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        display: grid;
+        align-items: center;
+      }
+      label {
+        margin-bottom: 10px;
+      }
+      input,
+      button {
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <label for="kode">Input Kode :</label>
+    <input type="text" id="kode" />
+    <label for="jumlah">Banyak Barang :</label>
+    <input type="number" id="jumlah" min="0" value="0" />
+    <button onclick="sumbit()">sumbit</button>
+
+    <script>
+      function sumbit() {
+        const kode = document.getElementById("kode").value;
+        const jumlah = parseInt(document.getElementById("jumlah").value, 10);
+
+        const harga = getHargaByKode(kode);
+
+        if (harga !== null) {
+          const total = jumlah * harga;
+          const bayar = prompt(
+            Total Bayar: ${total}\n
+            Masukkan jumlah uang:
+          );
+
+          if (bayar !== null && !isNaN(bayar)) {
+            const kembalian = bayar - total;
+            alert(Kembalian: ${kembalian});
+          } else {
+            alert("Jumalh bayar salah");
+          }
+        } else {
+          alert("Barang tidak ada");
+        }
+      }
+      function getHargaByKode(kode) {
+        const harga = {
+          "001": 10000,
+          "002": 20000,
+          "003": 30000,
+        };
+
+        return harga[kode] || null;
+      }
+    </script>
+  </body>
+</html>
+
+<td>
+  <tr>
+    Kode Barang : 001, 002, 003 Nama Barang : A, B, C Harga Barang : 10.000,
+    20.000, 30.000
+  </tr>
+</td>
